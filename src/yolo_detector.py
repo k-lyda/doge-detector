@@ -1,11 +1,13 @@
-import cv2
-from YOLOv3.model.yolo_model import YOLO
+import cv2 
+import numpy as np
+from src.YOLOv3.model.yolo_model import YOLO
+import matplotlib.pyplot as plt
 
 class YoloDetector(): 
-    def __init__(self, obj_threshold=0.6, nms_threshold=0.5, classes_file='YOLOv3/data/coco_classes.txt'):
-        self.yolo = YOLO(obj_threshold, nms_threshold, 'YOLOv3/data/yolo.h5')
+    def __init__(self, obj_threshold=0.6, nms_threshold=0.5, classes_file='src/YOLOv3/model/coco_classes.txt'):
+        self.yolo = YOLO(obj_threshold, nms_threshold, 'src/YOLOv3/data/yolo.h5')
         self.all_classes = self.get_classes(classes_file)
-
+    
     def get_classes(self, file):
         """Get classes name.
 
@@ -39,7 +41,7 @@ class YoloDetector():
 
         return image
     
-    def draw(self, image, boxes, scores, classes, all_classes):
+    def draw(self, image, boxes, scores, classes):
         """Draw the boxes on the image.
 
         # Argument:
@@ -57,17 +59,18 @@ class YoloDetector():
             right = min(image.shape[1], np.floor(x + w + 0.5).astype(int))
             bottom = min(image.shape[0], np.floor(y + h + 0.5).astype(int))
 
-            cv2.rectangle(image, (top, left), (right, bottom), (255, 0, 0), 2)
-            cv2.putText(image, '{0} {1:.2f}'.format(all_classes[cl], score),
-                        (top, left - 6),
-                        cv2.FONT_HERSHEY_SIMPLEX,
-                        0.6, (0, 0, 255), 1,
-                        cv2.LINE_AA)
-
-            print('class: {0}, score: {1:.2f}'.format(all_classes[cl], score))
-            print('box coordinate x,y,w,h: {0}'.format(box))
+            cv2.rectangle(image, (top, left), (right, bottom), (255, 0, 0), 4)
+            #cv2.putText(image, '{0} {1:.2f}'.format(cl, score),
+            #            (top, left - 6),
+            #            cv2.FONT_HERSHEY_SIMPLEX,
+            #            3, (0, 0, 255), 6,
+            #            cv2.LINE_AA)
+            
+            print('class: {0}, score: {1:.2f}'.format(cl, score))
+            #print('box coordinate x,y,w,h: {0}'.format(box))
         plt.imshow(image)
-        print()
+        plt.show()
+        #print()
 
     def detect_image(self, image):
         """Use yolo v3 to detect images.
