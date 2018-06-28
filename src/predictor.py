@@ -3,6 +3,7 @@ import keras
 import imageio
 import matplotlib.pyplot as plt
 from skimage.transform import resize
+from src.utils import get_key_by_value
 
 class Predictor():
     def __init__(self, name, model, base_model, app, image_size, labels_coding):
@@ -22,12 +23,7 @@ class Predictor():
             size = (max_dim * h / w, max_dim)
             return resize(img, size, preserve_range=True).astype('uint8')
 
-    def get_prediction(self, img, return_best=False):
-        def get_key_by_value(d, value):
-            for k, v in d.items():
-                if v == value:
-                    return k
-        
+    def get_prediction(self, img, return_best=False):      
         #preprocess image
         img = resize(img, self.image_size, preserve_range=True).astype('uint8')
         img = keras.preprocessing.image.img_to_array(img)
@@ -91,7 +87,7 @@ class Predictor():
 
                     pred = self.get_prediction(dog_img, return_best=return_best_only)
                     predictions.append(pred)
-                    if verbose: print("Done.")
+                    if verbose: print("Breed: {}, score: {}".format(pred[0][0], pred[0][1]))
                         
                 if verbose: 
                     boxes = [boxes[dog] for dog in dogs]

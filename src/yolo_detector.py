@@ -51,7 +51,7 @@ class YoloDetector():
             scores: ndarray, scores of objects.
             all_classes: all classes name.
         """
-        for box, score, cl in zip(boxes, scores, classes):
+        for i, (box, score, cl) in enumerate(zip(boxes, scores, classes)):
             x, y, w, h = box
 
             top = max(0, np.floor(x + 0.5).astype(int))
@@ -60,13 +60,13 @@ class YoloDetector():
             bottom = min(image.shape[0], np.floor(y + h + 0.5).astype(int))
 
             cv2.rectangle(image, (top, left), (right, bottom), (255, 0, 0), 4)
-            #cv2.putText(image, '{0} {1:.2f}'.format(cl, score),
-            #            (top, left - 6),
-            #            cv2.FONT_HERSHEY_SIMPLEX,
-            #            3, (0, 0, 255), 6,
-            #            cv2.LINE_AA)
+            cv2.putText(image, 'Dog {}'.format(i+1),
+                       (top, left - 6),
+                       cv2.FONT_HERSHEY_SIMPLEX,
+                       1, (0, 0, 255), 2,
+                       cv2.LINE_AA)
             
-            print('class: {0}, score: {1:.2f}'.format(cl, score))
+            #print('class: {0}, score: {1:.2f}'.format(cl, score))
             #print('box coordinate x,y,w,h: {0}'.format(box))
         plt.imshow(image)
         plt.show()
