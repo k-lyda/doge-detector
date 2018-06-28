@@ -10,13 +10,13 @@ As base models for feature extraction, two well know CNN are used: **ResNet** 
 
 ## Dataset
 
-[Stanford Dogs Dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) contains images of 120 breeds of dogs from around the world. This dataset has been built using images and annotation from ImageNet for the task of fine-grained image categorization. Files need for the project to work are:
+[Stanford Dogs Dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) contains images of 120 breeds of dogs from around the world. This dataset has been built using images and annotation from ImageNet for the task of fine-grained image categorization. Files needed for the project to work are:
 
 - [Images](http://vision.stanford.edu/aditya86/ImageNetDogs/images.tar) (757MB) 
-
 - [Annotations](http://vision.stanford.edu/aditya86/ImageNetDogs/annotation.tar) (21MB)
-
 - [Lists](http://vision.stanford.edu/aditya86/ImageNetDogs/lists.tar), with train/test splits (0.5MB)
+
+Check [Stanford Webpage](http://vision.stanford.edu/aditya86/ImageNetDogs/) for more info about the dataset.
 
 ## Environment
 
@@ -46,7 +46,7 @@ Run jupyter notebook inside doge_detector environment (the one created in **Envi
 $ jupyter notebook
 ```
 
-Then open a notebook and have fun :)
+Then open a notebook `project.ipynb` and have fun :)
 
 ## Accuracy
 
