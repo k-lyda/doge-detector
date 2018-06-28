@@ -1,0 +1,21 @@
+name: doge_detector
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - ipywidgets
+  - jupyter
+  - tensorflow=1.8.0
+  - keras=2.2.0
+  - matplotlib=2.2.2
+  - numpy=1.14.3
+  - pandas=0.23.1
+  - python=3.6.5
+  - py-opencv=3.4.1
+  - scikit-image=0.14.0
+  - scikit-learn=0.19.1
+  - scipy=1.1.0
+  - seaborn=0.8.1
+  - tqdm=4.23.4
+  - widgetsnbextension=3.2.1
+
