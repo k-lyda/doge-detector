@@ -9,7 +9,7 @@ class FeatureExtractor():
         img = image.load_img(filename, target_size=image_size)
         img = image.img_to_array(img)
 
-        # reshape data for the model and preprocess for the ResNet model
+        # reshape data for the model and preprocess for the application model
         img = img.reshape((1, img.shape[0], img.shape[1], img.shape[2]))
         img = app.preprocess_input(img)
 
